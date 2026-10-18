@@ -66,18 +66,21 @@ nav::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
 .brand{font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--text);text-decoration:none}
 .brand b{font-weight:600;color:var(--accent)}
 .nav-center{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center}
-.portfolio-3d{
+.portfolio-3d, .portfolio-badge{
   font-family:"Great Vibes",cursive;
   font-size:clamp(34px,4vw,46px);
   letter-spacing:.02em;
   text-decoration:none;
   display:inline-block;
   line-height:1;
+  color:#ffd700;
+  transform:rotate(-3deg) scaleX(1.82) scaleY(1);
   transform-origin:center;
+  text-shadow:0 0 14px rgba(255,215,0,.65),0 2px 14px rgba(245,158,11,.45);
   animation:portfolioGlowCycle 4s ease-in-out infinite;
   transition:filter .3s;
 }
-.portfolio-3d:hover{filter:brightness(1.25)}
+.portfolio-3d:hover, .portfolio-badge:hover{filter:brightness(1.25)}
 @keyframes portfolioGlowCycle{
   0%{
     transform:rotate(-3deg) scaleX(1.82) scaleY(1);
@@ -156,11 +159,11 @@ h1 em{font-style:italic;color:var(--accent)}
 @media(max-width:640px){
   .page{width:min(100% - 32px,540px)}
   nav{margin-bottom:32px}.nav-link{display:none}
-  .portfolio-3d{font-size:clamp(24px,5.5vw,32px)}
+  .portfolio-3d, .portfolio-badge{font-size:clamp(24px,5.5vw,32px)}
   .hero{grid-template-columns:1fr;gap:34px}.scene{width:130px;height:130px;order:-1;margin:0 auto}
   .group-grid{grid-template-columns:1fr}.group .card,.card{min-height:186px}.group{padding:30px 14px 14px}
 }
-@media(prefers-reduced-motion:reduce){.card,.card *,.portfolio-3d{transition:none!important;animation:none!important;transform:none!important}}
+@media(prefers-reduced-motion:reduce){.card,.card *{transition:none!important;animation:none!important;transform:none!important}}
 </style>
 </head>
 <body>
@@ -169,7 +172,7 @@ h1 em{font-style:italic;color:var(--accent)}
   <nav aria-label="Головна навігація">
     <a class="brand" href="#" aria-label="Andriy Veremchuck">Andriy <b>Veremchuck</b></a>
     <div class="nav-center">
-      <a class="portfolio-3d" href="#projects" aria-label="Portfolio">Portfolio</a>
+      <a class="portfolio-3d portfolio-badge" href="#projects" aria-label="Portfolio">Portfolio</a>
     </div>
     <div class="nav-right">
       <a class="nav-link" href="https://github.com/AndriyVeremchuck" target="_blank" rel="noopener">GitHub</a>
