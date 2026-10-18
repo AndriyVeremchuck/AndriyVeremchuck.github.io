@@ -1,30 +1,27 @@
 <!doctype html>
-<html lang="uk" data-theme="dark">
+<html lang="uk">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="color-scheme" content="dark light" />
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="Expires" content="0" />
+<meta name="color-scheme" content="light dark" />
 <title>Andriy Veremchuck — Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
 <style>
 :root{
-  color-scheme:dark;
-  --bg:#0e0e10; --surface:#151517; --text:#ebe7de; --muted:#8f8a80;
-  --line:#26262a; --accent:#ffd700; --gold:#ffd700; --accent-soft:rgba(255,215,0,.09);
-  --steel:#8a9099; --vein:#ffd700; --vein-op:.07;
-  --shadow:0 26px 60px -26px rgba(0,0,0,.9);
-}
-:root[data-theme="light"]{
   color-scheme:light;
   --bg:#f3f1ed; --surface:#fbfaf8; --text:#1d1c1a; --muted:#77726a;
-  --line:#e0dcd4; --accent:#9c7f45; --gold:#ffd700; --accent-soft:rgba(156,127,69,.10);
+  --line:#e0dcd4; --accent:#9c7f45; --accent-soft:rgba(156,127,69,.10);
   --steel:#8d939b; --vein:#8b867c; --vein-op:.10;
   --shadow:0 22px 50px -24px rgba(40,34,22,.35);
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0e0e10; --surface:#151517; --text:#ebe7de; --muted:#8f8a80;
+  --line:#26262a; --accent:#c7a76b; --accent-soft:rgba(199,167,107,.09);
+  --steel:#8a9099; --vein:#c7a76b; --vein-op:.07;
+  --shadow:0 26px 60px -26px rgba(0,0,0,.9);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme]){
@@ -60,12 +57,13 @@ body::before{
 }
 .page{width:min(100% - 48px,1020px);margin:0 auto;padding:22px 0 44px}
 
-.top-nav{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:16px;margin-bottom:24px;border-bottom:1px solid rgba(255,255,255,.14)}
-.top-nav a{color:#94a3b8;text-decoration:none;font-size:13px;transition:color .2s}
-.top-nav a:hover{color:#ffd700}
-.top-nav .brand{font-family:"Montserrat",sans-serif;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:#ffffff}
-.top-nav .nav-center{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center}
-.top-nav .portfolio-badge{
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 0 18px;margin-bottom:36px;position:relative}
+nav::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:linear-gradient(90deg,var(--accent),var(--line) 28%,var(--line) 72%,transparent)}
+.brand{font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--text);text-decoration:none}
+.brand b{font-weight:600;color:var(--accent)}
+.nav-center{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center}
+.portfolio-3d{
   font-family:"Great Vibes",cursive;
   font-size:clamp(34px,4vw,46px);
   letter-spacing:.02em;
@@ -76,10 +74,7 @@ body::before{
   animation:portfolioGlowCycle 4s ease-in-out infinite;
   transition:filter .3s;
 }
-.top-nav .portfolio-badge:hover{filter:brightness(1.2)}
-@media(max-width:640px){
-  .top-nav .portfolio-badge{font-size:clamp(24px,5.5vw,32px)}
-}
+.portfolio-3d:hover{filter:brightness(1.2)}
 @keyframes portfolioGlowCycle{
   0%{
     transform:rotate(-3deg) scaleX(1.82) scaleY(1);
@@ -97,6 +92,13 @@ body::before{
     text-shadow:0 0 14px rgba(255,215,0,.65),0 2px 14px rgba(245,158,11,.45);
   }
 }
+.nav-right{display:flex;align-items:center;gap:30px}
+.nav-link{font-size:13px;color:var(--muted);text-decoration:none;position:relative;transition:color .25s}
+.nav-link::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nav-link:hover{color:var(--text)}.nav-link:hover::after{transform:scaleX(1)}
+.toggle{width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:14px;color:var(--accent);
+  background:transparent;border:1px solid var(--line);transition:border-color .25s,transform .35s,background .25s}
+.toggle:hover{border-color:var(--accent);background:var(--accent-soft);transform:rotate(20deg)}
 
 .hero{display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;margin-bottom:44px}
 .eyebrow{margin:0 0 14px;font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--accent)}
@@ -150,22 +152,26 @@ h1 em{font-style:italic;color:var(--accent)}
 @media(max-width:900px) and (min-width:641px){.group-grid{grid-template-columns:1fr}.group .card{min-height:0}}
 @media(max-width:640px){
   .page{width:min(100% - 32px,540px)}
-  .top-nav{margin-bottom:32px}
+  nav{margin-bottom:32px}.nav-link{display:none}
+  .portfolio-3d{font-size:clamp(24px,5.5vw,32px)}
   .hero{grid-template-columns:1fr;gap:34px}.scene{width:130px;height:130px;order:-1;margin:0 auto}
   .group-grid{grid-template-columns:1fr}.group .card,.card{min-height:186px}.group{padding:30px 14px 14px}
 }
-@media(prefers-reduced-motion:reduce){.card,.card *,.portfolio-badge{transition:none!important;animation:none!important;transform:none!important}}
+@media(prefers-reduced-motion:reduce){.card,.card *,.portfolio-3d{transition:none!important;animation:none!important;transform:none!important}}
 </style>
 </head>
 <body>
 <div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
 <main class="page">
-  <nav class="top-nav" aria-label="Головна навігація">
-    <a class="brand" href="#">← ANDRIY <span style="color:#ffd700">VEREMCHUCK</span></a>
+  <nav aria-label="Головна навігація">
+    <a class="brand" href="#" aria-label="Andriy Veremchuck">Andriy <b>Veremchuck</b></a>
     <div class="nav-center">
-      <a class="portfolio-badge" href="#projects" aria-label="Portfolio">Portfolio</a>
+      <a class="portfolio-3d" href="#projects" aria-label="Portfolio">Portfolio</a>
     </div>
-    <a href="https://github.com/AndriyVeremchuck" target="_blank" rel="noopener">GitHub ↗</a>
+    <div class="nav-right">
+      <a class="nav-link" href="https://github.com/AndriyVeremchuck" target="_blank" rel="noopener">GitHub</a>
+      <button class="toggle" type="button" title="Змінити тему" aria-label="Змінити тему">☾</button>
+    </div>
   </nav>
 
   <section class="hero" aria-labelledby="t">
@@ -255,14 +261,6 @@ function frame(now){
 requestAnimationFrame(frame);
 document.querySelectorAll(".card").forEach(c=>c.addEventListener("pointermove",e=>{
   const r=c.getBoundingClientRect();c.style.setProperty("--mx",e.clientX-r.left+"px");c.style.setProperty("--my",e.clientY-r.top+"px")}));
-const p3d=document.querySelector(".portfolio-3d");
-if(p3d){
-  p3d.addEventListener("pointerenter",()=>{
-    const sign=Math.random()<0.5?-1:1;
-    const deg=(sign*(1.8+Math.random()*2.7)).toFixed(1);
-    p3d.style.setProperty("--hover-rot",`${deg}deg`);
-  });
-}
 </script>
 </body>
 </html>
