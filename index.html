@@ -63,6 +63,22 @@ nav::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
 .brand{font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--text);text-decoration:none}
 .brand b{font-weight:600;color:var(--accent)}
 .nav-center{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;perspective:600px}
+@keyframes popFont{
+  0%{transform:perspective(600px) rotateX(10deg) rotateY(-8deg) scale(1)}
+  40%{
+    transform:perspective(600px) rotateX(0deg) rotateY(0deg) scale(1.36) translateZ(32px);
+    color:#f59e0b;
+    text-shadow:
+      1px 1px 0 #d97706,
+      2px 2px 0 #b45309,
+      3px 3px 0 #92400e,
+      4px 4px 0 #78350f,
+      5px 5px 0 #451a03,
+      6px 6px 16px rgba(245,158,11,.75),
+      8px 8px 24px rgba(0,0,0,.65);
+  }
+  100%{transform:perspective(600px) rotateX(10deg) rotateY(-8deg) scale(1)}
+}
 .portfolio-3d{
   font-family:"Fredericka the Great",serif;
   font-size:clamp(22px,2.8vw,32px);
@@ -71,10 +87,10 @@ nav::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
   display:inline-block;
   line-height:1;
   color:#b45309;
-  transform:rotateX(10deg) rotateY(-8deg);
+  transform:perspective(600px) rotateX(10deg) rotateY(-8deg);
   transform-style:preserve-3d;
-  will-change:transform,text-shadow,color;
-  transition:transform .45s cubic-bezier(.34,1.56,.64,1),text-shadow .4s,color .35s;
+  will-change:transform,text-shadow,color,font-family;
+  transition:color .3s,text-shadow .3s;
   text-shadow:
     1px 1px 0 #92400e,
     2px 2px 0 #78350f,
@@ -101,31 +117,8 @@ nav::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
       5px 5px 16px rgba(0,0,0,.85);
   }
 }
-.portfolio-3d.font-pop{
-  transform:rotateX(4deg) rotateY(-3deg) scale(1.24) translateZ(28px) !important;
-  color:#f59e0b !important;
-  text-shadow:
-    1px 1px 0 #d97706,
-    2px 2px 0 #b45309,
-    3px 3px 0 #92400e,
-    4px 4px 0 #78350f,
-    5px 5px 0 #451a03,
-    6px 6px 14px rgba(245,158,11,.65),
-    8px 8px 24px rgba(0,0,0,.6) !important;
-}
-:root[data-theme="dark"] .portfolio-3d.font-pop{
-  color:#fef08a !important;
-  text-shadow:
-    1px 1px 0 #f59e0b,
-    2px 2px 0 #d97706,
-    3px 3px 0 #b45309,
-    4px 4px 0 #78350f,
-    5px 5px 0 #451a03,
-    6px 6px 16px rgba(251,191,36,.75),
-    9px 9px 26px rgba(0,0,0,.9) !important;
-}
 .portfolio-3d:hover{
-  transform:rotateX(0deg) rotateY(0deg) scale(1.14) translateZ(16px);
+  transform:perspective(600px) rotateX(0deg) rotateY(0deg) scale(1.18) translateZ(18px);
   color:#d97706;
   text-shadow:
     1px 1px 0 #b45309,
@@ -216,6 +209,14 @@ h1 em{font-style:italic;color:var(--accent)}
 </style>
 </head>
 <body>
+<div style="position:fixed;left:-9999px;top:-9999px;opacity:0;pointer-events:none;font-size:1px;" aria-hidden="true">
+  <span style="font-family:'Fredericka the Great',serif">Portfolio</span>
+  <span style="font-family:'Cabin Sketch',cursive">Portfolio</span>
+  <span style="font-family:'Bungee Shade',cursive">Portfolio</span>
+  <span style="font-family:'Londrina Shadow',cursive">Portfolio</span>
+  <span style="font-family:'Monoton',cursive">Portfolio</span>
+  <span style="font-family:'Rye',serif">Portfolio</span>
+</div>
 <div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
 <main class="page">
   <nav aria-label="Головна навігація">
@@ -336,18 +337,19 @@ if(p3d){
     do{next=Math.floor(Math.random()*fonts.length)}while(next===curIdx);
     curIdx=next;
     p3d.style.fontFamily=fonts[curIdx];
-    p3d.classList.add("font-pop");
-    setTimeout(()=>p3d.classList.remove("font-pop"),480);
+    p3d.style.animation="none";
+    p3d.offsetHeight;
+    p3d.style.animation="popFont 0.65s cubic-bezier(.34,1.56,.64,1)";
   };
-  let tId=setInterval(changeFont,2400);
+  let tId=setInterval(changeFont,2200);
   p3d.addEventListener("mouseenter",()=>{
     clearInterval(tId);
     changeFont();
-    tId=setInterval(changeFont,1800);
+    tId=setInterval(changeFont,1600);
   });
   p3d.addEventListener("mouseleave",()=>{
     clearInterval(tId);
-    tId=setInterval(changeFont,2400);
+    tId=setInterval(changeFont,2200);
   });
 }
 </script>
