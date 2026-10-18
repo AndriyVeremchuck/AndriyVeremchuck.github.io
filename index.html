@@ -7,7 +7,7 @@
 <title>Andriy Veremchuck — Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet" />
 <style>
 :root{
   color-scheme:light;
@@ -62,43 +62,66 @@ nav::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
   background:linear-gradient(90deg,var(--accent),var(--line) 28%,var(--line) 72%,transparent)}
 .brand{font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--text);text-decoration:none}
 .brand b{font-weight:600;color:var(--accent)}
-.nav-center{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center}
-.portfolio-badge{
-  font-family:"Unbounded",sans-serif;
-  font-size:clamp(12px,1.4vw,15px);
-  font-weight:800;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:4px 14px;
-  border-radius:999px;
+.nav-center{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;perspective:600px}
+.portfolio-3d{
+  font-family:"Fredericka the Great",serif;
+  font-size:clamp(22px,2.8vw,32px);
+  letter-spacing:.06em;
   text-decoration:none;
-  background:linear-gradient(135deg,rgba(255,81,47,.12),rgba(240,152,25,.18));
-  border:1px solid color-mix(in srgb,#f09819 40%,var(--line));
-  box-shadow:0 2px 14px -3px rgba(240,152,25,.28);
-  transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s;
+  display:inline-block;
+  line-height:1;
+  color:#b45309;
+  transform:rotateX(10deg) rotateY(-8deg);
+  transform-style:preserve-3d;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),text-shadow .35s,color .35s;
+  text-shadow:
+    1px 1px 0 #92400e,
+    2px 2px 0 #78350f,
+    3px 3px 0 #451a03,
+    4px 4px 6px rgba(40,34,22,.35);
 }
-.portfolio-badge:hover{
-  transform:scale(1.06);
-  border-color:#f09819;
-  box-shadow:0 4px 20px -1px rgba(240,152,25,.45);
+:root[data-theme="dark"] .portfolio-3d{
+  color:#fcd34d;
+  text-shadow:
+    1px 1px 0 #d97706,
+    2px 2px 0 #b45309,
+    3px 3px 0 #78350f,
+    4px 4px 10px rgba(251,191,36,.35),
+    5px 5px 16px rgba(0,0,0,.85);
 }
-.portfolio-spark{
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:#ff512f;
-  box-shadow:0 0 8px #ff512f;
-  animation:spark-pulse 2s infinite ease-in-out;
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme]) .portfolio-3d{
+    color:#fcd34d;
+    text-shadow:
+      1px 1px 0 #d97706,
+      2px 2px 0 #b45309,
+      3px 3px 0 #78350f,
+      4px 4px 10px rgba(251,191,36,.35),
+      5px 5px 16px rgba(0,0,0,.85);
+  }
 }
-@keyframes spark-pulse{0%,100%{transform:scale(1);opacity:.95}50%{transform:scale(1.4);opacity:.45}}
-.portfolio-text{
-  background:linear-gradient(115deg,#ff4e50 0%,#f9d423 52%,#ff1361 100%);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 1px 6px rgba(255,78,80,.35));
+.portfolio-3d:hover{
+  transform:rotateX(0deg) rotateY(0deg) scale(1.12) translateZ(14px);
+  color:#d97706;
+  text-shadow:
+    1px 1px 0 #b45309,
+    2px 2px 0 #92400e,
+    3px 3px 0 #78350f,
+    4px 4px 0 #451a03,
+    5px 5px 0 #291002,
+    6px 6px 12px rgba(217,119,6,.45),
+    8px 8px 18px rgba(0,0,0,.4);
+}
+:root[data-theme="dark"] .portfolio-3d:hover{
+  color:#fef08a;
+  text-shadow:
+    1px 1px 0 #f59e0b,
+    2px 2px 0 #d97706,
+    3px 3px 0 #b45309,
+    4px 4px 0 #78350f,
+    5px 5px 0 #451a03,
+    6px 6px 14px rgba(251,191,36,.6),
+    8px 8px 22px rgba(0,0,0,.9);
 }
 .nav-right{display:flex;align-items:center;gap:30px}
 .nav-link{font-size:13px;color:var(--muted);text-decoration:none;position:relative;transition:color .25s}
@@ -161,12 +184,11 @@ h1 em{font-style:italic;color:var(--accent)}
 @media(max-width:640px){
   .page{width:min(100% - 32px,540px)}
   nav{margin-bottom:32px}.nav-link{display:none}
-  .portfolio-badge{padding:3px 10px;font-size:11px;letter-spacing:.12em;gap:6px}
-  .portfolio-spark{width:5px;height:5px}
+  .portfolio-3d{font-size:18px;letter-spacing:.04em}
   .hero{grid-template-columns:1fr;gap:34px}.scene{width:210px;height:210px;order:-1;margin:0 auto}
   .group-grid{grid-template-columns:1fr}.group .card,.card{min-height:186px}.group{padding:30px 14px 14px}
 }
-@media(prefers-reduced-motion:reduce){.card,.card *,.portfolio-badge *{transition:none!important;animation:none!important}}
+@media(prefers-reduced-motion:reduce){.card,.card *,.portfolio-3d{transition:none!important;animation:none!important;transform:none!important}}
 </style>
 </head>
 <body>
@@ -175,10 +197,7 @@ h1 em{font-style:italic;color:var(--accent)}
   <nav aria-label="Головна навігація">
     <a class="brand" href="#" aria-label="Andriy Veremchuck">Andriy <b>Veremchuck</b></a>
     <div class="nav-center">
-      <a class="portfolio-badge" href="#projects" aria-label="Portfolio">
-        <span class="portfolio-spark" aria-hidden="true"></span>
-        <span class="portfolio-text">Portfolio</span>
-      </a>
+      <a class="portfolio-3d" href="#projects" aria-label="Portfolio">Portfolio</a>
     </div>
     <div class="nav-right">
       <a class="nav-link" href="#projects">Проєкти</a>
