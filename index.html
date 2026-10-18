@@ -7,7 +7,7 @@
 <title>Andriy Veremchuck — Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet" />
 <style>
 :root{
   color-scheme:light;
@@ -57,64 +57,33 @@ body::before{
 }
 .page{width:min(100% - 48px,1020px);margin:0 auto;padding:22px 0 44px}
 
-nav{display:flex;align-items:center;justify-content:space-between;padding:0 0 18px;margin-bottom:36px;position:relative}
-nav::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
-  background:linear-gradient(90deg,var(--accent),var(--line) 28%,var(--line) 72%,transparent)}
-.brand{font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--text);text-decoration:none}
-.brand b{font-weight:600;color:var(--accent)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:16px;margin-bottom:36px;border-bottom:1px solid var(--line);position:relative}
+:root[data-theme="dark"] nav{border-bottom-color:rgba(255,255,255,.14)}
+.brand{font-family:"Montserrat",sans-serif;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--text);text-decoration:none}
+:root[data-theme="dark"] .brand{color:#ffffff}
 .nav-center{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center}
 .portfolio-3d{
   --hover-rot:3deg;
   font-family:"Great Vibes",cursive;
-  font-size:clamp(39px,4.7vw,55px);
+  font-size:clamp(34px,4vw,46px);
   letter-spacing:.02em;
   text-decoration:none;
   display:inline-block;
   line-height:1;
-  color:#b45309;
+  color:#ffd700;
   transform:rotate(-2deg) scaleX(1.82);
   transform-origin:center;
   transition:transform .45s cubic-bezier(.2,.8,.2,1),text-shadow .35s,color .35s;
-  text-shadow:
-    0 1px 1px rgba(255,255,255,.8),
-    1px 2px 3px rgba(180,83,9,.25),
-    0 4px 14px rgba(180,83,9,.15);
-}
-:root[data-theme="dark"] .portfolio-3d{
-  color:#fbbf24;
-  text-shadow:
-    0 0 12px rgba(251,191,36,.55),
-    0 2px 16px rgba(245,158,11,.4),
-    0 4px 20px rgba(0,0,0,.9);
-}
-@media(prefers-color-scheme:dark){
-  :root:not([data-theme]) .portfolio-3d{
-    color:#fbbf24;
-    text-shadow:
-      0 0 12px rgba(251,191,36,.55),
-      0 2px 16px rgba(245,158,11,.4),
-      0 4px 20px rgba(0,0,0,.9);
-  }
+  text-shadow:0 0 14px rgba(255,215,0,.55),0 2px 14px rgba(245,158,11,.4);
 }
 .portfolio-3d:hover{
   transform:rotate(var(--hover-rot,3deg)) scaleX(1.92) scaleY(1.08);
-  color:#d97706;
-  text-shadow:
-    0 0 16px rgba(217,119,6,.65),
-    0 4px 18px rgba(217,119,6,.45),
-    0 6px 22px rgba(0,0,0,.3);
+  color:#ffffff;
+  text-shadow:0 0 18px rgba(255,255,255,.8),0 0 26px rgba(255,215,0,.7);
 }
-:root[data-theme="dark"] .portfolio-3d:hover{
-  color:#fef08a;
-  text-shadow:
-    0 0 18px rgba(254,240,138,.85),
-    0 0 28px rgba(251,191,36,.7),
-    0 4px 24px rgba(0,0,0,.95);
-}
-.nav-right{display:flex;align-items:center;gap:30px}
-.nav-link{font-size:13px;color:var(--muted);text-decoration:none;position:relative;transition:color .25s}
-.nav-link::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
-.nav-link:hover{color:var(--text)}.nav-link:hover::after{transform:scaleX(1)}
+.nav-right{display:flex;align-items:center;gap:20px}
+.nav-link{font-size:13px;color:#94a3b8;text-decoration:none;transition:color .2s}
+.nav-link:hover{color:#ffd700}
 .toggle{width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:14px;color:var(--accent);
   background:transparent;border:1px solid var(--line);transition:border-color .25s,transform .35s,background .25s}
 .toggle:hover{border-color:var(--accent);background:var(--accent-soft);transform:rotate(20deg)}
@@ -183,12 +152,12 @@ h1 em{font-style:italic;color:var(--accent)}
 <div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
 <main class="page">
   <nav aria-label="Головна навігація">
-    <a class="brand" href="#" aria-label="Andriy Veremchuck">Andriy <b>Veremchuck</b></a>
+    <a class="brand" href="#" aria-label="Andriy Veremchuck">ANDRIY <span style="color:#ffd700">VEREMCHUCK</span></a>
     <div class="nav-center">
       <a class="portfolio-3d" href="#projects" aria-label="Portfolio">Portfolio</a>
     </div>
     <div class="nav-right">
-      <a class="nav-link" href="https://github.com/AndriyVeremchuck" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-link" href="https://github.com/AndriyVeremchuck" target="_blank" rel="noopener">GitHub ↗</a>
       <button class="toggle" type="button" title="Змінити тему" aria-label="Змінити тему">☾</button>
     </div>
   </nav>
