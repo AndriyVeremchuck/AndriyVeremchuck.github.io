@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="uk">
+<html lang="uk" data-theme="dark">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="color-scheme" content="light dark" />
+<meta name="color-scheme" content="dark" />
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
@@ -13,27 +13,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet" />
 <style>
 :root{
-  color-scheme:light;
-  --bg:#f3f1ed; --surface:#fbfaf8; --text:#1d1c1a; --muted:#77726a;
-  --line:#e0dcd4; --accent:#9c7f45; --accent-soft:rgba(156,127,69,.10);
-  --steel:#8d939b; --vein:#8b867c; --vein-op:.10;
-  --shadow:0 22px 50px -24px rgba(40,34,22,.35);
-}
-:root[data-theme="dark"]{
   color-scheme:dark;
   --bg:#0e0e10; --surface:#151517; --text:#ebe7de; --muted:#8f8a80;
   --line:#26262a; --accent:#c7a76b; --accent-soft:rgba(199,167,107,.09);
   --steel:#8a9099; --vein:#c7a76b; --vein-op:.07;
   --shadow:0 26px 60px -26px rgba(0,0,0,.9);
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme]){
-    color-scheme:dark;
-    --bg:#0e0e10; --surface:#151517; --text:#ebe7de; --muted:#8f8a80;
-    --line:#26262a; --accent:#c7a76b; --accent-soft:rgba(199,167,107,.09);
-    --steel:#8a9099; --vein:#c7a76b; --vein-op:.07;
-    --shadow:0 26px 60px -26px rgba(0,0,0,.9);
-  }
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -80,9 +64,6 @@ nav{
   box-shadow:var(--shadow);
   box-sizing:border-box;
 }
-:root[data-theme="light"] nav{
-  background:rgba(251,250,248,.88);
-}
 .brand{font-family:"Montserrat",sans-serif;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--text);text-decoration:none}
 .brand b{font-weight:600;color:var(--accent)}
 .nav-center{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center}
@@ -118,9 +99,6 @@ nav{
 .nav-right{display:flex;align-items:center;gap:30px}
 .nav-link{font-size:13px;color:var(--muted);text-decoration:none;position:relative;transition:color .25s}
 .nav-link:hover{color:var(--text)}
-.toggle{width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:14px;color:var(--accent);
-  background:transparent;border:1px solid var(--line);transition:border-color .25s,transform .35s,background .25s}
-.toggle:hover{border-color:var(--accent);background:var(--accent-soft);transform:rotate(20deg)}
 
 .hero{display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;margin-bottom:44px}
 .eyebrow{margin:0 0 14px;font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--accent)}
@@ -194,8 +172,7 @@ h1 em{font-style:italic;color:var(--accent)}
       <a class="portfolio-3d portfolio-badge" href="#projects" aria-label="Portfolio">Portfolio</a>
     </div>
     <div class="nav-right">
-      <a class="nav-link" href="https://github.com/AndriyVeremchuck" target="_blank" rel="noopener">GitHub</a>
-      <button class="toggle" type="button" title="Змінити тему" aria-label="Змінити тему">☾</button>
+      <a class="nav-link" href="https://github.com/AndriyVeremchuck" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
   </nav>
 
@@ -235,12 +212,8 @@ h1 em{font-style:italic;color:var(--accent)}
   </section>
 </main>
 <script>
-const root=document.documentElement,btn=document.querySelector(".toggle");
-const saved=localStorage.getItem("theme");if(saved)root.dataset.theme=saved;
-const dark=()=>root.dataset.theme?root.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;
-const sync=()=>btn.textContent=dark()?"☀":"☾";
-btn.onclick=()=>{root.dataset.theme=dark()?"light":"dark";localStorage.setItem("theme",root.dataset.theme);sync()};
-sync();
+localStorage.removeItem("theme");
+document.documentElement.dataset.theme="dark";
 const cv=document.querySelector(".scene canvas"),cx=cv.getContext("2d");
 let W=0,H=0,mx=0,my=0,tx=0,ty=0;
 const fit=()=>{const r=cv.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);W=r.width;H=r.height;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0)};
