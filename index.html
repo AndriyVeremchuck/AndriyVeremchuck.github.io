@@ -7,7 +7,7 @@
 <title>Andriy Veremchuck — Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Cabin+Sketch:wght@700&family=Fredericka+the+Great&family=Londrina+Shadow&family=Monoton&family=Rye&display=swap" rel="stylesheet" />
 <style>
 :root{
   color-scheme:light;
@@ -73,7 +73,8 @@ nav::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
   color:#b45309;
   transform:rotateX(10deg) rotateY(-8deg);
   transform-style:preserve-3d;
-  transition:transform .35s cubic-bezier(.2,.8,.2,1),text-shadow .35s,color .35s;
+  will-change:transform,text-shadow,color;
+  transition:transform .45s cubic-bezier(.34,1.56,.64,1),text-shadow .4s,color .35s;
   text-shadow:
     1px 1px 0 #92400e,
     2px 2px 0 #78350f,
@@ -100,8 +101,31 @@ nav::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
       5px 5px 16px rgba(0,0,0,.85);
   }
 }
+.portfolio-3d.font-pop{
+  transform:rotateX(4deg) rotateY(-3deg) scale(1.24) translateZ(28px) !important;
+  color:#f59e0b !important;
+  text-shadow:
+    1px 1px 0 #d97706,
+    2px 2px 0 #b45309,
+    3px 3px 0 #92400e,
+    4px 4px 0 #78350f,
+    5px 5px 0 #451a03,
+    6px 6px 14px rgba(245,158,11,.65),
+    8px 8px 24px rgba(0,0,0,.6) !important;
+}
+:root[data-theme="dark"] .portfolio-3d.font-pop{
+  color:#fef08a !important;
+  text-shadow:
+    1px 1px 0 #f59e0b,
+    2px 2px 0 #d97706,
+    3px 3px 0 #b45309,
+    4px 4px 0 #78350f,
+    5px 5px 0 #451a03,
+    6px 6px 16px rgba(251,191,36,.75),
+    9px 9px 26px rgba(0,0,0,.9) !important;
+}
 .portfolio-3d:hover{
-  transform:rotateX(0deg) rotateY(0deg) scale(1.12) translateZ(14px);
+  transform:rotateX(0deg) rotateY(0deg) scale(1.14) translateZ(16px);
   color:#d97706;
   text-shadow:
     1px 1px 0 #b45309,
@@ -294,6 +318,38 @@ function frame(now){
 requestAnimationFrame(frame);
 document.querySelectorAll(".card").forEach(c=>c.addEventListener("pointermove",e=>{
   const r=c.getBoundingClientRect();c.style.setProperty("--mx",e.clientX-r.left+"px");c.style.setProperty("--my",e.clientY-r.top+"px")}));
+
+// Динамічна анімація випадкової зміни подібних 3D шрифтів зі збільшенням
+const p3d=document.querySelector(".portfolio-3d");
+if(p3d){
+  const fonts=[
+    "'Fredericka the Great', serif",
+    "'Cabin Sketch', cursive",
+    "'Bungee Shade', cursive",
+    "'Londrina Shadow', cursive",
+    "'Monoton', cursive",
+    "'Rye', serif"
+  ];
+  let curIdx=0;
+  const changeFont=()=>{
+    let next;
+    do{next=Math.floor(Math.random()*fonts.length)}while(next===curIdx);
+    curIdx=next;
+    p3d.style.fontFamily=fonts[curIdx];
+    p3d.classList.add("font-pop");
+    setTimeout(()=>p3d.classList.remove("font-pop"),480);
+  };
+  let tId=setInterval(changeFont,2400);
+  p3d.addEventListener("mouseenter",()=>{
+    clearInterval(tId);
+    changeFont();
+    tId=setInterval(changeFont,1800);
+  });
+  p3d.addEventListener("mouseleave",()=>{
+    clearInterval(tId);
+    tId=setInterval(changeFont,2400);
+  });
+}
 </script>
 </body>
 </html>
