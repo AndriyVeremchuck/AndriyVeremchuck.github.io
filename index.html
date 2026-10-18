@@ -58,9 +58,9 @@ body::before{
   -webkit-mask-image:radial-gradient(120% 90% at 85% 0%,#000,transparent 75%);
           mask-image:radial-gradient(120% 90% at 85% 0%,#000,transparent 75%);
 }
-.page{width:min(100% - 48px,1020px);margin:0 auto;padding:22px 0 44px}
+.page{width:100%;max-width:1080px;margin:0 auto;padding:24px 20px 40px}
 
-nav{display:flex;align-items:center;justify-content:space-between;padding:0 0 18px;margin-bottom:36px;position:relative}
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 0 16px;margin-bottom:24px;position:relative}
 nav::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
   background:linear-gradient(90deg,var(--accent),var(--line) 28%,var(--line) 72%,transparent)}
 .brand{font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--text);text-decoration:none}
@@ -157,8 +157,8 @@ h1 em{font-style:italic;color:var(--accent)}
 
 @media(max-width:900px) and (min-width:641px){.group-grid{grid-template-columns:1fr}.group .card{min-height:0}}
 @media(max-width:640px){
-  .page{width:min(100% - 32px,540px)}
-  nav{margin-bottom:32px}.nav-link{display:none}
+  .page{padding:20px 16px 32px}
+  nav{margin-bottom:24px}.nav-link{display:none}
   .portfolio-3d, .portfolio-badge{font-size:clamp(24px,5.5vw,32px)}
   .hero{grid-template-columns:1fr;gap:34px}.scene{width:130px;height:130px;order:-1;margin:0 auto}
   .group-grid{grid-template-columns:1fr}.group .card,.card{min-height:186px}.group{padding:30px 14px 14px}
