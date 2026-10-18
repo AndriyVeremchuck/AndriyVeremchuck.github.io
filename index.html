@@ -125,9 +125,9 @@ h1{margin:0;font-family:"Cormorant Garamond","Playfair Display",Georgia,"Times N
 h1 em{font-style:italic;color:var(--accent)}
 .intro{max-width:480px;margin:24px 0 0;color:var(--muted);font-size:16px}
 
-.scene{position:relative;width:100px;height:100px;flex:none}
+.scene{position:relative;width:180px;height:180px;flex:none}
 .scene canvas{width:100%;height:100%;display:block}
-.scene::before{content:"";position:absolute;inset:18%;border-radius:50%;background:radial-gradient(closest-side,var(--accent-soft),transparent);filter:blur(10px)}
+.scene::before{content:"";position:absolute;inset:12%;border-radius:50%;background:radial-gradient(closest-side,var(--accent-soft),transparent);filter:blur(12px)}
 
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 .group{position:relative;padding:34px 20px 20px;border:1px solid color-mix(in srgb,var(--accent) 50%,var(--line));border-radius:24px;background:var(--accent-soft)}
@@ -172,7 +172,7 @@ h1 em{font-style:italic;color:var(--accent)}
   .page{width:min(100% - 32px,540px)}
   nav{margin-bottom:32px}.nav-link{display:none}
   .portfolio-3d{font-size:clamp(24px,5.5vw,34px);letter-spacing:.02em;transform:rotate(-2deg) scaleX(1.65)}
-  .hero{grid-template-columns:1fr;gap:34px}.scene{width:70px;height:70px;order:-1;margin:0 auto}
+  .hero{grid-template-columns:1fr;gap:34px}.scene{width:130px;height:130px;order:-1;margin:0 auto}
   .group-grid{grid-template-columns:1fr}.group .card,.card{min-height:186px}.group{padding:30px 14px 14px}
 }
 @media(prefers-reduced-motion:reduce){.card,.card *,.portfolio-3d{transition:none!important;animation:none!important;transform:none!important}}
