@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="color-scheme" content="light dark" />
 <title>Andriy Veremchuck — Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet" />
 <style>
 :root{
   color-scheme:light;
@@ -59,6 +62,44 @@ nav::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
   background:linear-gradient(90deg,var(--accent),var(--line) 28%,var(--line) 72%,transparent)}
 .brand{font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--text);text-decoration:none}
 .brand b{font-weight:600;color:var(--accent)}
+.nav-center{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center}
+.portfolio-badge{
+  font-family:"Unbounded",sans-serif;
+  font-size:clamp(12px,1.4vw,15px);
+  font-weight:800;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:4px 14px;
+  border-radius:999px;
+  text-decoration:none;
+  background:linear-gradient(135deg,rgba(255,81,47,.12),rgba(240,152,25,.18));
+  border:1px solid color-mix(in srgb,#f09819 40%,var(--line));
+  box-shadow:0 2px 14px -3px rgba(240,152,25,.28);
+  transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s;
+}
+.portfolio-badge:hover{
+  transform:scale(1.06);
+  border-color:#f09819;
+  box-shadow:0 4px 20px -1px rgba(240,152,25,.45);
+}
+.portfolio-spark{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#ff512f;
+  box-shadow:0 0 8px #ff512f;
+  animation:spark-pulse 2s infinite ease-in-out;
+}
+@keyframes spark-pulse{0%,100%{transform:scale(1);opacity:.95}50%{transform:scale(1.4);opacity:.45}}
+.portfolio-text{
+  background:linear-gradient(115deg,#ff4e50 0%,#f9d423 52%,#ff1361 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 1px 6px rgba(255,78,80,.35));
+}
 .nav-right{display:flex;align-items:center;gap:30px}
 .nav-link{font-size:13px;color:var(--muted);text-decoration:none;position:relative;transition:color .25s}
 .nav-link::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
@@ -120,10 +161,12 @@ h1 em{font-style:italic;color:var(--accent)}
 @media(max-width:640px){
   .page{width:min(100% - 32px,540px)}
   nav{margin-bottom:32px}.nav-link{display:none}
+  .portfolio-badge{padding:3px 10px;font-size:11px;letter-spacing:.12em;gap:6px}
+  .portfolio-spark{width:5px;height:5px}
   .hero{grid-template-columns:1fr;gap:34px}.scene{width:210px;height:210px;order:-1;margin:0 auto}
   .group-grid{grid-template-columns:1fr}.group .card,.card{min-height:186px}.group{padding:30px 14px 14px}
 }
-@media(prefers-reduced-motion:reduce){.card,.card *{transition:none!important}}
+@media(prefers-reduced-motion:reduce){.card,.card *,.portfolio-badge *{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
@@ -131,6 +174,12 @@ h1 em{font-style:italic;color:var(--accent)}
 <main class="page">
   <nav aria-label="Головна навігація">
     <a class="brand" href="#" aria-label="Andriy Veremchuck">Andriy <b>Veremchuck</b></a>
+    <div class="nav-center">
+      <a class="portfolio-badge" href="#projects" aria-label="Portfolio">
+        <span class="portfolio-spark" aria-hidden="true"></span>
+        <span class="portfolio-text">Portfolio</span>
+      </a>
+    </div>
     <div class="nav-right">
       <a class="nav-link" href="#projects">Проєкти</a>
       <a class="nav-link" href="https://github.com/AndriyVeremchuck" target="_blank" rel="noopener">GitHub</a>
